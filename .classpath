@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Hightail/src"/>
+	<classpathentry kind="lib" path="Hightail/dist/Hightail-combined.jar"/>
+	<classpathentry kind="lib" path="Hightail/dist/Hightail.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/filterbuilder.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/htmllexer.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/htmlparser.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/junit.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/sax2.jar"/>
+	<classpathentry kind="lib" path="Hightail/lib/thumbelina.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Hightail/build/classes"/>
+</classpath>

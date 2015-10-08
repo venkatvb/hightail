@@ -77,6 +77,7 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
         jScrollPane1 = new javax.swing.JScrollPane();
         testTable = new javax.swing.JTable();
         testTable.setDefaultRenderer(String.class, new MultilineTableCellRenderer());
+        openTextEditorButton = new javax.swing.JButton();
         newTestcaseButton = new javax.swing.JButton();
         editTestcaseButton = new javax.swing.JButton();
         deleteTestcaseButton = new javax.swing.JButton();
@@ -98,7 +99,14 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
             }
         });
         jScrollPane1.setViewportView(testTable);
-
+        
+        openTextEditorButton.setText("<html><center>Open<br/>text editor</center></html>");
+        openTextEditorButton.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+        		openTextEditorButtonActionPerformed(evt);
+        	}
+        });
+        
         newTestcaseButton.setText("<html><center>New<br />test case</center></html");
         newTestcaseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +174,8 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
             testcasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(testcasePanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(openTextEditorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(newTestcaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editTestcaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,6 +205,7 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
                         .addComponent(saveTestsButton)
                         .addComponent(copyInputButton))
                     .addComponent(editTestcaseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(openTextEditorButton)
                     .addComponent(newTestcaseButton)
                     .addComponent(abortCurrentTestButton)
                     .addComponent(runTestsButton)
@@ -330,6 +341,20 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
         });
     }
     
+    public void openTextEditor() {
+    	JOptionPane.showMessageDialog(this, "Yes, the button event is working fine! ");
+    	String command = "subl " + Config.get("workingDirectory") 
+    						+ java.io.File.separator 
+    						+ problem.getName() 
+    						+ ".cpp";
+    	try {
+    		Process proc = Runtime.getRuntime().exec(command);
+    	} catch(Exception e) {
+    		System.out.println("cannot create a new process. Exception.");
+    	}
+    	
+    }
+    
     private void newTestcase() {
         if (isTesting) {
             return;
@@ -342,6 +367,10 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
             problem.addTestcase(newTestcase);
             testTableModel.rowInserted();
         }
+    }
+    
+    private void openTextEditorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	openTextEditor();
     }
     
     private void newTestcaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newTestcaseButtonActionPerformed
@@ -562,6 +591,7 @@ public class ProblemJPanel extends javax.swing.JPanel implements TestingListener
     private javax.swing.JButton editTestcaseButton;
     private javax.swing.JLabel executableFileLabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton openTextEditorButton;
     private javax.swing.JButton newTestcaseButton;
     private javax.swing.JButton openContainingDirectoryButton;
     private javax.swing.JButton runTestsButton;

@@ -1,0 +1,6 @@
+org.hightail
+org.hightail.diff
+org.hightail.parsers.contest
+org.hightail.parsers.task
+org.hightail.ui
+org.hightail.util

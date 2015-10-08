@@ -78,11 +78,21 @@ public class CodeForcesTaskParser implements TaskParser {
         fb.setFilters(new NodeFilter[] {
             new CssSelectorNodeFilter("div.header"),
             new CssSelectorNodeFilter("div.title")});
-        String problemName = fb.getText();
+        String problemName = "";
+		if(URL.toLowerCase().contains("contest")) {
+			String[] parts = URL.split("/");
+			if(parts.length == 7) {
+				problemName = parts[4] + parts[6];
+			}
+		} else if(URL.toLowerCase().contains("problemset")) {
+			String[] parts = URL.split("/");
+			if(parts.length == 7) {
+				problemName = parts[5] + parts[6];
+			}
+		} 
         if (problemName.isEmpty()) {
             throw new ParserException("Problem name not extracted (probably incorrect url).");
         }
-        problemName = String.valueOf(problemName.charAt(0));
         
         if (Thread.interrupted()) {
             throw new InterruptedException();
